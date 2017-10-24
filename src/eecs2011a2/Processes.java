@@ -10,10 +10,34 @@ public class Processes {
 	private int processPriority = 1;
 	private State state = State.New;
 
+	/****** Needed for calculations ******/
+	private long queuedTime;
+	private long waitTime;
+
 	/*************************************************************************/
-	public Processes(int priority, State state) {
+	public Processes(int priority, State state, long queuedTime) {
 		this.processPriority = priority;
 		this.state = state;
+		this.queuedTime = queuedTime;
+	}
+	public long getWaitTime() {
+		return waitTime;
+	}
+
+	public void setWaitTime(long waitTime) {
+		this.waitTime = waitTime;
+	}
+
+	public long getQueuedTime() {
+		return queuedTime;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+	}
+
+	public State getState() {
+		return state;
 	}
 
 	public List<TimePType> getCPU_time() {

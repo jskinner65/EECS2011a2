@@ -3,10 +3,10 @@ package eecs2011a2;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NonpreemptivePriority implements Algorithms{
+public class NonpreemptiveSJF implements Algorithms {
 	List<Processes> processes = new ArrayList<Processes>();
 	long totalWaitTime = 0;
-	int priorityJobIndex = 0;
+	int shortestJobIndex = 0;
 	int numberOfProcesses = 0;
 
 	public void runAlgorithm() {
@@ -16,40 +16,40 @@ public class NonpreemptivePriority implements Algorithms{
 		processes = Test.getProcesses();
 		while (!Test.allProcessDone()) {
 			processTime = 0;
-			System.out.println(priorityJobIndex);
-			System.out.println(processes.get(priorityJobIndex).getProcessPriority());
+			System.out.println(shortestJobIndex);
+			System.out.println(processes.get(shortestJobIndex).getTotalTime());
 			System.out.println("Wait time was: " + waitTime(time));
 			System.out.println("StartTime: " + time);
-			while (processTime < processes.get(priorityJobIndex).getTotalTime()) {
+			while (processTime < processes.get(shortestJobIndex).getTotalTime()) {
 				processTime++;
 				time++;
 			}
 			System.out.println("EndTime: " + time);
 			System.out.println("");
-			processes.remove(priorityJobIndex);
+			processes.remove(shortestJobIndex);
 			if (!Test.allProcessDone()) {
-				shortestPriorityJob();
+				shortestJob();
 			}
 		}
 		System.out.println("");
 		System.out.println("Average Wait Time was:  " + averageWait());
 	}
 
-	public void shortestPriorityJob() {
-		priorityJobIndex = 0;
-		int shortPriority = processes.get(0).getProcessPriority();
+	public void shortestJob() {
+		shortestJobIndex = 0;
+		int shortTime = processes.get(0).getTotalTime();
 		for (int i = 1; i < processes.size(); i++) {
-			if (processes.get(i).getProcessPriority() > shortPriority) {
-				shortPriority = processes.get(i).getProcessPriority();
-				priorityJobIndex = i;
+			if (processes.get(i).getTotalTime() < shortTime) {
+				shortTime = processes.get(i).getTotalTime();
+				shortestJobIndex = i;
 			}
 		}
 	}
 
 	@Override
 	public long waitTime(long time) {
-		long waitTime = (time - processes.get(priorityJobIndex).getQueuedTime());
-		processes.get(priorityJobIndex).setWaitTime(waitTime);
+		long waitTime = (time - processes.get(shortestJobIndex).getQueuedTime());
+		processes.get(shortestJobIndex).setWaitTime(waitTime);
 		totalWaitTime += waitTime;
 		numberOfProcesses++;
 		return waitTime;
@@ -61,7 +61,8 @@ public class NonpreemptivePriority implements Algorithms{
 	}
 
 	public static void main(String[] args) {
-		NonpreemptivePriority start = new NonpreemptivePriority();
+		NonpreemptiveSJF start = new NonpreemptiveSJF();
 		start.runAlgorithm();
 	}
+
 }

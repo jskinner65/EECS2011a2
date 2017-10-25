@@ -20,6 +20,7 @@ public class Processes {
 		this.state = state;
 		this.queuedTime = queuedTime;
 	}
+
 	public long getWaitTime() {
 		return waitTime;
 	}
@@ -54,6 +55,26 @@ public class Processes {
 		int time = 0;
 		for (int i = 0; i < CPU_time.size(); i++) {
 			time += CPU_time.get(i).getTime();
+		}
+		return time;
+	}
+
+	public int getTotalCPUTime() {
+		int time = 0;
+		for (int i = 0; i < CPU_time.size(); i++) {
+			if (CPU_time.get(i).getStr() == PType.CPU_time) {
+				time += CPU_time.get(i).getTime();
+			}
+		}
+		return time;
+	}
+
+	public int getTotalIOTime() {
+		int time = 0;
+		for (int i = 0; i < CPU_time.size(); i++) {
+			if (CPU_time.get(i).getStr() == PType.IO_time) {
+				time += CPU_time.get(i).getTime();
+			}
 		}
 		return time;
 	}

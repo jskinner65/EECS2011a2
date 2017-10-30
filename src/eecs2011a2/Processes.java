@@ -13,6 +13,7 @@ public class Processes {
 	/****** Needed for calculations ******/
 	private long queuedTime;
 	private long waitTime;
+	private long currentIOWait;
 
 	/*************************************************************************/
 	public Processes(int priority, State state, long queuedTime) {
@@ -109,6 +110,14 @@ public class Processes {
 
 	public static void main(String[] args) {
 		Test.createProcesses();
+	}
+
+	public long getCurrentIOWait() {
+		return currentIOWait;
+	}
+
+	public void setCurrentIOWait(long currentIOWait) {
+		this.currentIOWait = currentIOWait;
 	}
 
 }

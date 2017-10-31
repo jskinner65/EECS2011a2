@@ -7,18 +7,23 @@ public class Test {
 	static List<Processes> processes = new ArrayList<Processes>();
 
 	public static void createProcesses() {
-		for (int j = 0; j < 10; j++) {
-			processes.add(new Processes((int) (Math.random() * 99) + 1, State.New, 10*j));  //After 10 cycles add new process
+		for (int j = 0; j < 5; j++) {
+			processes.add(new Processes((int) (Math.random() * 99) + 1, State.New, 10 * j)); // After
+																								// 10
+																								// cycles
+																								// add
+																								// new
+																								// process
 			PType p;
 			System.out.println("Start of Process " + j);
 			for (int i = 0; i < (Math.random() * 10) + 1; i++) {
-				if ((int) (Math.random() * 2) == 0) {
-					p = PType.CPU_time;
-				} else {
-					p = PType.IO_time;
-				}
 
+				p = PType.CPU_time;
 				TimePType e = new TimePType(((int) (Math.random() * 100)), p);
+				processes.get(j).addLast(e);
+				p = PType.IO_time;
+
+				e = new TimePType(((int) (Math.random() * 100)), p);
 				processes.get(j).addLast(e);
 
 			}
@@ -47,5 +52,5 @@ public class Test {
 		}
 		return done;
 	}
-	
+
 }

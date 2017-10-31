@@ -8,7 +8,7 @@ public class Processes {
 	private List<TimePType> CPU_time = new ArrayList<TimePType>();
 
 	private int processPriority = 1;
-	private State state = State.New;
+	private State state = State.Ready;
 
 	/****** Needed for calculations ******/
 	private long queuedTime;

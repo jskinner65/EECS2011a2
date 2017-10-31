@@ -16,7 +16,7 @@ public class Test {
 																								// process
 			PType p;
 			System.out.println("Start of Process " + j);
-			for (int i = 0; i < (Math.random() * 10) + 1; i++) {
+			for (int i = 0; i < (Math.random() * 5) + 1; i++) {
 
 				p = PType.CPU_time;
 				TimePType e = new TimePType(((int) (Math.random() * 100)), p);

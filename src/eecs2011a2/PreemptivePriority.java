@@ -51,7 +51,8 @@ public class PreemptivePriority implements Algorithms {
 					processTime++;
 					time++;
 					IOtime++;
-				}
+					checkIO();
+				} 
 				processes.get(priorityJobIndex).setState(State.Ready);
 				processes.get(priorityJobIndex).getCPU_time().get(i).setDone(true);
 				checkJobDone();
@@ -62,6 +63,15 @@ public class PreemptivePriority implements Algorithms {
 			}
 		}
 					
+	}
+	
+	public void checkIO(){
+		for (int i=0; i<processes.get(priorityJobIndex).getCPU_time().get(i).getTime(); i++){
+			if (processes.get(priorityJobIndex).getCPU_time().get(i).getStr()==PType.IO_time){
+				
+			}
+		}
+			
 	}
 	
 	public void checkJobDone(){

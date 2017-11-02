@@ -14,86 +14,87 @@ public class PreemptivePriority implements Algorithms {
 	long time = 0;
 	long IOtime = 0;
 	long processTime;
-	
-	
+	int CPUprocessID;
+	int CPUID;
+
+	int IOprocessID;
+	int IOID;
+
 	public void runAlgorithm() {
 		Test.createProcesses();
 		processes = Test.getProcesses();
-		while (!Test.allProcessDone()) {
+		CPUprocessID = 0;
+		CPUID = 0;
+		IOprocessID = -1;
+		IOID = 0;
+		while (time < 1000) {
 			processTime = 0;
-			System.out.println(priorityJobIndex);
-			System.out.println("Priority " + processes.get(priorityJobIndex).getProcessPriority());
-			System.out.println("Wait time was: " + waitTime(time));
-			System.out.println("StartTime: " + time);
 
-			
 			process();
-			
-			System.out.println("EndTime: " + time);
-			System.out.println("");
-			processes.remove(priorityJobIndex); 
-			if (!Test.allProcessDone()) {
-				shortestPriorityJob();
-			}
+			processIO();
+
+			time++;
+
 		}
 		System.out.println("");
-		System.out.println("Average Wait Time was:  " + averageWait());
+		// System.out.println("Average Wait Time was: " + averageWait());
 	}
-	
-	
-	public void process(){
-		for (int i = 0; i < processes.get(priorityJobIndex).getCPU_time().size(); i++) {
-			processTime = 0;
-			if ((processes.get(priorityJobIndex).getCPU_time().get(i).getStr() == PType.CPU_time)
-					&& !(processes.get(priorityJobIndex).getCPU_time().get(i).isDone())) {
-				while (processTime < processes.get(priorityJobIndex).getCPU_time().get(i).getTime()) {
-					processes.get(priorityJobIndex).setState(State.Running);
-					processTime++;
+
+	public void process() {
+		if (processes.get(CPUprocessID).getCPU_time().get(CPUID).getStr() == PType.CPU_time
+				&& processes.get(CPUprocessID).getCPU_time().get(CPUID).getTime() > 0
+				&& !processes.get(CPUprocessID).getCPU_time().get(CPUID).isDone()) {
+			processes.get(CPUprocessID).getCPU_time().get(0)
+					.setTime(processes.get(CPUprocessID).getCPU_time().get(CPUID).getTime() - 1);
+			if (processes.get(CPUprocessID).getCPU_time().get(CPUID).getTime() == 0) {
+				processes.get(CPUprocessID).getCPU_time().get(CPUID).setDone(true);
+				if (processes.get(CPUprocessID).doneCPU()) {
+					processes.remove(CPUprocessID);
 					time++;
-					IOtime++;
-					checkIO();
-				} 
-				processes.get(priorityJobIndex).setState(State.Ready);
-				processes.get(priorityJobIndex).getCPU_time().get(i).setDone(true);
-				checkJobDone();
-			} else {
-				processes.get(priorityJobIndex)
-						.setCurrentIOWait(processes.get(priorityJobIndex).getCPU_time().get(i).getTime());
-				processes.get(priorityJobIndex).setState(State.Terminated);
+				}
+				IOprocessID = CPUprocessID;
 			}
 		}
-					
+
 	}
-	
-	public void checkIO(){
-		for (int i=0; i<processes.get(priorityJobIndex).getCPU_time().get(i).getTime(); i++){
-			if (processes.get(priorityJobIndex).getCPU_time().get(i).getStr()==PType.IO_time){
-				
+
+	public void processIO() {
+		if (IOprocessID > 0) {
+
+			if (processes.get(IOprocessID).getCPU_time().get(IOID).getStr() == PType.IO_time
+					&& processes.get(IOprocessID).getCPU_time().get(IOID).getTime() > 0
+					&& !processes.get(IOprocessID).getCPU_time().get(IOID).isDone()) {
+				processes.get(IOprocessID).getCPU_time().get(IOID)
+						.setTime(processes.get(IOprocessID).getCPU_time().get(IOID).getTime() - 1);
+				if (processes.get(IOprocessID).getCPU_time().get(IOID).getTime() == 0) {
+					processes.get(IOprocessID).getCPU_time().get(IOID).setDone(true);
+				}
+			}
+			if (processes.get(IOprocessID).doneCPU()) {
+				processes.remove(IOprocessID);
 			}
 		}
-			
 	}
-	
-	public void checkJobDone(){
+
+	public void checkJobDone() {
 		int done = 0;
-		for (int i = 0; i< processes.get(priorityJobIndex).getCPU_time().size(); i++){
-			if (!(processes.get(priorityJobIndex).getCPU_time().get(i).isDone())){
+		for (int i = 0; i < processes.get(priorityJobIndex).getCPU_time().size(); i++) {
+			if (!(processes.get(priorityJobIndex).getCPU_time().get(i).isDone())) {
 				done = 1;
 				break;
 			}
 		}
-		if (done != 0){
+		if (done != 0) {
 			processes.get(priorityJobIndex).setState(State.Ready);
-		}
-		else{
+		} else {
 			processes.get(priorityJobIndex).setState(State.Terminated);
 		}
-			
+
 	}
-	
-	public int getNextPriorityReady(){
-		for (int i=0; i<jobs.size(); i++){
-			if (processes.get(jobs.get(i).getJobNo()).getState()==State.Ready){
+
+	public int getNextPriorityReady() {
+		for (int i = 0; i < jobs.size(); i++) {
+			if (processes.get(jobs.get(i).getJobNo()).getState() == State.Ready) {
 				return jobs.get(i).getJobNo();
 			}
 		}

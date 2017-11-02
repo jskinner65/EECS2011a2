@@ -119,5 +119,12 @@ public class Processes {
 	public void setCurrentIOWait(long currentIOWait) {
 		this.currentIOWait = currentIOWait;
 	}
-
+	public boolean doneCPU() {
+		for (int i =0 ; i<CPU_time.size(); i++) {
+			if (!CPU_time.get(i).isDone()){
+				return false;
+			}
+		}
+		return true;
+	}
 }

@@ -27,53 +27,43 @@ public class PreemptivePriority implements Algorithms {
 		CPUID = 0;
 		IOprocessID = -1;
 		IOID = 0;
-		while (time < 1000) {
+		List<Processes> queueCPU = new ArrayList<Processes>();
+		List<Processes> queueIO = new ArrayList<Processes>();
+		int i = 0;
+		Processes p = processes.get(0);
+
+		while (0 < p.getCPU_time().size()) {
 			processTime = 0;
+			p = processes.get(0);
+			System.out.println("SIZE : " + p.getCPU_time().size());
+			queueCPU.add(p);
+			while (queueCPU.size() > 0) {
+				for (int j = 0; j < queueCPU.get(0).getCPU_time().size(); j++) {
+					if (!(queueCPU.get(0).getCPU_time().get(j).isDone())
+							&& queueCPU.get(0).getCPU_time().get(j).getStr() == PType.CPU_time) {
+						i = j;
+						break;
+					}
+				}
 
-			process();
-			processIO();
+				queueCPU.get(0).getCPU_time().get(i).setTime(-1);
 
-			time++;
+				time++;
 
+				if (queueCPU.get(0).getCPU_time().get(i).getTime()==0) {
+					queueCPU.get(0).getCPU_time().get(i).setDone(true);
+					// send to IO
+				}
+			}
+			System.out.println(0);
+			processes.remove(0);
+			i++;
+			if (Test.allProcessDone()) {
+				break;
+			}
 		}
 		System.out.println("");
 		// System.out.println("Average Wait Time was: " + averageWait());
-	}
-
-	public void process() {
-		if (processes.get(CPUprocessID).getCPU_time().get(CPUID).getStr() == PType.CPU_time
-				&& processes.get(CPUprocessID).getCPU_time().get(CPUID).getTime() > 0
-				&& !processes.get(CPUprocessID).getCPU_time().get(CPUID).isDone()) {
-			processes.get(CPUprocessID).getCPU_time().get(0)
-					.setTime(processes.get(CPUprocessID).getCPU_time().get(CPUID).getTime() - 1);
-			if (processes.get(CPUprocessID).getCPU_time().get(CPUID).getTime() == 0) {
-				processes.get(CPUprocessID).getCPU_time().get(CPUID).setDone(true);
-				if (processes.get(CPUprocessID).doneCPU()) {
-					processes.remove(CPUprocessID);
-					time++;
-				}
-				IOprocessID = CPUprocessID;
-			}
-		}
-
-	}
-
-	public void processIO() {
-		if (IOprocessID > 0) {
-
-			if (processes.get(IOprocessID).getCPU_time().get(IOID).getStr() == PType.IO_time
-					&& processes.get(IOprocessID).getCPU_time().get(IOID).getTime() > 0
-					&& !processes.get(IOprocessID).getCPU_time().get(IOID).isDone()) {
-				processes.get(IOprocessID).getCPU_time().get(IOID)
-						.setTime(processes.get(IOprocessID).getCPU_time().get(IOID).getTime() - 1);
-				if (processes.get(IOprocessID).getCPU_time().get(IOID).getTime() == 0) {
-					processes.get(IOprocessID).getCPU_time().get(IOID).setDone(true);
-				}
-			}
-			if (processes.get(IOprocessID).doneCPU()) {
-				processes.remove(IOprocessID);
-			}
-		}
 	}
 
 	public void checkJobDone() {

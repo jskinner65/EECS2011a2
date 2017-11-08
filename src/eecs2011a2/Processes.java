@@ -2,7 +2,7 @@ package eecs2011a2;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//creates the processes and runs different methods on them
 public class Processes {
 	/*************************************************************************/
 	private List<TimePType> CPU_time = new ArrayList<TimePType>();

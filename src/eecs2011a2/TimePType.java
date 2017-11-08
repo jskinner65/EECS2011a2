@@ -1,5 +1,5 @@
 package eecs2011a2;
-
+//igve the time and type for each cpu/io cycle
 public class TimePType {
 	private int time;
 	private PType str;

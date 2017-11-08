@@ -2,7 +2,8 @@ package eecs2011a2;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//runs the algorithms on the processes and ouputs the Wait times etc for each process
+//based on Priority
 public class NonpreemptivePriority implements Algorithms{
 	List<Processes> processes = new ArrayList<Processes>();
 	long totalWaitTime = 0;

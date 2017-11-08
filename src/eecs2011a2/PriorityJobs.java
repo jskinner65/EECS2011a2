@@ -1,5 +1,5 @@
 package eecs2011a2;
-
+//  uses the processes to evaluate the priority and puts them in order 
 public class PriorityJobs implements Comparable<Object>{
 	private int priority;
 	private int jobNo;

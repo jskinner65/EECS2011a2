@@ -16,7 +16,6 @@ public class PreemptivePriority implements Algorithms {
 	long processTime;
 	int CPUprocessID;
 	int CPUID;
-
 	int IOprocessID;
 	int IOID;
 
@@ -45,15 +44,16 @@ public class PreemptivePriority implements Algorithms {
 						break;
 					}
 				}
-
 				queueCPU.get(0).getCPU_time().get(i).setTime(-1);
 
 				time++;
 
 				if (queueCPU.get(0).getCPU_time().get(i).getTime()==0) {
 					queueCPU.get(0).getCPU_time().get(i).setDone(true);
+					break;
 					// send to IO
 				}
+				break;
 			}
 			System.out.println(0);
 			processes.remove(0);

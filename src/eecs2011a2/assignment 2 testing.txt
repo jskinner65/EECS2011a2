@@ -1,0 +1,289 @@
+Non Preemptive FCFS - We created random processes and the class computed the averages
+
+Start of Process 0
+time: 68    str: CPU_time
+time: 54    str: IO_time
+time: 70    str: CPU_time
+time: 53    str: IO_time
+time: 13    str: CPU_time
+time: 97    str: IO_time
+time: 29    str: CPU_time
+time: 39    str: IO_time
+Total Time :  423
+Priority of :  11
+End of Process 0
+
+Start of Process 1
+time: 10    str: CPU_time
+time: 70    str: IO_time
+time: 33    str: CPU_time
+time: 23    str: IO_time
+time: 23    str: CPU_time
+time: 79    str: IO_time
+time: 50    str: CPU_time
+time: 65    str: IO_time
+time: 13    str: CPU_time
+time: 66    str: IO_time
+time: 84    str: CPU_time
+time: 90    str: IO_time
+Total Time :  606
+Priority of :  16
+End of Process 1
+
+Start of Process 2
+time: 17    str: CPU_time
+time: 59    str: IO_time
+time: 47    str: CPU_time
+time: 82    str: IO_time
+time: 72    str: CPU_time
+time: 35    str: IO_time
+time: 47    str: CPU_time
+time: 49    str: IO_time
+Total Time :  408
+Priority of :  39
+End of Process 2
+
+Start of Process 3
+time: 14    str: CPU_time
+time: 90    str: IO_time
+time: 91    str: CPU_time
+time: 43    str: IO_time
+time: 4    str: CPU_time
+time: 15    str: IO_time
+time: 97    str: CPU_time
+time: 32    str: IO_time
+Total Time :  386
+Priority of :  94
+End of Process 3
+
+Start of Process 4
+time: 6    str: CPU_time
+time: 76    str: IO_time
+time: 39    str: CPU_time
+time: 76    str: IO_time
+time: 91    str: CPU_time
+time: 11    str: IO_time
+time: 97    str: CPU_time
+time: 39    str: IO_time
+time: 71    str: CPU_time
+time: 25    str: IO_time
+Total Time :  531
+Priority of :  88
+End of Process 4
+
+Wait time was: 0
+StartTime: 0
+EndTime: 423
+
+Wait time was: 413
+StartTime: 423
+EndTime: 1029
+
+Wait time was: 1009
+StartTime: 1029
+EndTime: 1437
+
+Wait time was: 1407
+StartTime: 1437
+EndTime: 1823
+
+Wait time was: 1783
+StartTime: 1823
+EndTime: 2354
+
+
+Average Wait Time was:  922
+
+Nonpreemptive Priority - we created some random test cases and produced the output.
+
+Start of Process 0
+time: 63    str: CPU_time
+time: 9    str: IO_time
+time: 10    str: CPU_time
+time: 49    str: IO_time
+time: 82    str: CPU_time
+time: 75    str: IO_time
+time: 72    str: CPU_time
+time: 68    str: IO_time
+Total Time :  428
+Priority of :  38
+End of Process 0
+
+Start of Process 1
+time: 31    str: CPU_time
+time: 17    str: IO_time
+time: 11    str: CPU_time
+time: 44    str: IO_time
+time: 9    str: CPU_time
+time: 4    str: IO_time
+time: 85    str: CPU_time
+time: 31    str: IO_time
+Total Time :  232
+Priority of :  85
+End of Process 1
+
+Start of Process 2
+time: 1    str: CPU_time
+time: 84    str: IO_time
+time: 41    str: CPU_time
+time: 59    str: IO_time
+time: 67    str: CPU_time
+time: 54    str: IO_time
+time: 17    str: CPU_time
+time: 42    str: IO_time
+time: 35    str: CPU_time
+time: 6    str: IO_time
+Total Time :  406
+Priority of :  2
+End of Process 2
+
+Start of Process 3
+time: 61    str: CPU_time
+time: 33    str: IO_time
+time: 28    str: CPU_time
+time: 57    str: IO_time
+Total Time :  179
+Priority of :  40
+End of Process 3
+
+Start of Process 4
+time: 76    str: CPU_time
+time: 90    str: IO_time
+time: 2    str: CPU_time
+time: 8    str: IO_time
+Total Time :  176
+Priority of :  8
+End of Process 4
+
+0
+38
+Wait time was: 0
+StartTime: 0
+EndTime: 428
+
+0
+85
+Wait time was: 418
+StartTime: 428
+EndTime: 660
+
+1
+40
+Wait time was: 630
+StartTime: 660
+EndTime: 839
+
+1
+8
+Wait time was: 799
+StartTime: 839
+EndTime: 1015
+
+0
+2
+Wait time was: 995
+StartTime: 1015
+EndTime: 1421
+
+
+Average Wait Time was:  568
+
+
+
+Nonpreemptive SJF - we created some random test cases and produced the output.
+
+Start of Process 0
+time: 78    str: CPU_time
+time: 96    str: IO_time
+time: 76    str: CPU_time
+time: 69    str: IO_time
+time: 45    str: CPU_time
+time: 25    str: IO_time
+Total Time :  389
+Priority of :  11
+End of Process 0
+
+Start of Process 1
+time: 72    str: CPU_time
+time: 69    str: IO_time
+time: 49    str: CPU_time
+time: 89    str: IO_time
+time: 15    str: CPU_time
+time: 15    str: IO_time
+time: 86    str: CPU_time
+time: 97    str: IO_time
+Total Time :  492
+Priority of :  33
+End of Process 1
+
+Start of Process 2
+time: 99    str: CPU_time
+time: 44    str: IO_time
+time: 58    str: CPU_time
+time: 84    str: IO_time
+time: 70    str: CPU_time
+time: 36    str: IO_time
+Total Time :  391
+Priority of :  86
+End of Process 2
+
+Start of Process 3
+time: 93    str: CPU_time
+time: 55    str: IO_time
+time: 59    str: CPU_time
+time: 18    str: IO_time
+time: 2    str: CPU_time
+time: 85    str: IO_time
+time: 7    str: CPU_time
+time: 63    str: IO_time
+time: 20    str: CPU_time
+time: 41    str: IO_time
+Total Time :  443
+Priority of :  36
+End of Process 3
+
+Start of Process 4
+time: 57    str: CPU_time
+time: 28    str: IO_time
+time: 93    str: CPU_time
+time: 70    str: IO_time
+time: 41    str: CPU_time
+time: 28    str: IO_time
+time: 27    str: CPU_time
+time: 43    str: IO_time
+Total Time :  387
+Priority of :  50
+End of Process 4
+
+0
+389
+Wait time was: 0
+StartTime: 0
+EndTime: 389
+
+3
+387
+Wait time was: 349
+StartTime: 389
+EndTime: 776
+
+1
+391
+Wait time was: 756
+StartTime: 776
+EndTime: 1167
+
+1
+443
+Wait time was: 1137
+StartTime: 1167
+EndTime: 1610
+
+0
+492
+Wait time was: 1600
+StartTime: 1610
+EndTime: 2102
+
+
+Average Wait Time was:  768
